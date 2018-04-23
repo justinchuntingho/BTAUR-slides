@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Text Analysis and Digital Research</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/night.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <section data-background="SNPvsUKIPkeyword.png">
+                <p>
+  			    <h2 style = "background-color:rgba(0,0,0,0.7);">Basic Text Analysis using R</h2>
+                <br>
+                <h3 style = "background-color:rgba(0,0,0,0.7);">Justin Chun-ting Ho</h3>
+  			    </p>
+  			  </section>
+              <section>
+                    <section>
+                        <h2>Text Analysis: <br>The Basics</h2>
+                    </section>
+                    <section>
+                        <h2>What is Text Analysis?</h2>
+                    </section>
+                    <section>
+                        <h4><i>“Systematic, objective, quantitative analysis of message characteristics"</i></h3>
+                        <small>Kimberly A. Neuendorf, <i> The Content Analysis Guidebook</i></small>
+                    </section>
+                    <section>
+                        <h3>Types of Text Analysis</h3><br>
+                        <div  style="text-align: left;">
+                        <p><h4>Degree of human involvement:</h4>
+                        <ul>
+                            <li>Human coding (100%)</li>
+                            <li>Supervised</li>
+                            <li>Unsupervised (0%)</li>
+                        </ul></p>
+                        <p><h4>Type of Objective:</h4>
+                        <ul>
+                            <li>Scaling </li>
+                            <li>Classification</li>
+                        </ul></p></div>
+                    </section>
+                    <section>
+                        <img src="grimmersteward.png" height="600">
+                    </section>
+                    <section>
+                        <h3>Caution!</h3><br>
+                        <h4><i>"All Quantitative Models of Language Are Wrong  — But Some Are Useful"</i></h4>
+                        <small>Justin Grimmer and Brandon Stewart, <i>Text as Data: The Promise and Pitfalls of Automatic Content
+Analysis Methods for Political Texts</i></small>
+                    </section>
+                    <section>
+                        <h3>Bag of Words Assumption</h3>
+                        <div  style="text-align: left;">
+                        <br>
+                        <p><h4>- Word order doesn’t matter</h4></p>
+                        <p>
+                        <h4>- The followings are exactly the same:</h4>
+                        I enjoy eating food and being with my family<br>
+                        I enjoy eating my family and being with food<br>
+                        and being eating enjoy family food I my with<br></p>
+                    </div>
+                    </section>
+                    <section>
+                        <h2>The Pre-Processing</h2>
+                    </section>
+                    <section id="original-text" class="slide level2">
+                    <h3>Original Text</h3>
+                    <pre><code>## &lt;&lt;PlainTextDocument&gt;&gt;
+## Metadata:  7
+## Content:  chars: 181
+##
+## Article 1. All human beings are born free and equal in dignity and rights. They are endowed with reason and conscience and should act towards one another in a spirit of brotherhood.</code></pre>
+                    </section>
+                    <section id="remove-punctuation" class="slide level2">
+                    <h3>Remove Punctuation</h3>
+                    <pre><code>## &lt;&lt;PlainTextDocument&gt;&gt;
+## Metadata:  7
+## Content:  chars: 178
+##
+## Article 1 All human beings are born free and equal in dignity and rights They are endowed with reason and conscience and should act towards one another in a spirit of brotherhood</code></pre>
+                    </section>
+                    <section id="to-lower-case" class="slide level2">
+                    <h3>To Lower Case</h3>
+                    <pre><code>## &lt;&lt;PlainTextDocument&gt;&gt;
+## Metadata:  7
+## Content:  chars: 178
+##
+## article 1 all human beings are born free and equal in dignity and rights they are endowed with reason and conscience and should act towards one another in a spirit of brotherhood</code></pre>
+                    </section>
+                    <section id="remove-numbers" class="slide level2">
+                    <h3>Remove Numbers</h3>
+                    <pre><code>## &lt;&lt;PlainTextDocument&gt;&gt;
+## Metadata:  7
+## Content:  chars: 177
+##
+## article  all human beings are born free and equal in dignity and rights they are endowed with reason and conscience and should act towards one another in a spirit of brotherhood</code></pre>
+                    </section>
+                    <section id="remove-stopwords" class="slide level2">
+                    <h3>Remove Stopwords</h3>
+                    <pre><code>## &lt;&lt;PlainTextDocument&gt;&gt;
+## Metadata:  7
+## Content:  chars: 135
+##
+## article   human beings  born free  equal  dignity  rights   endowed  reason  conscience   act towards one another   spirit  brotherhood</code></pre>
+                    </section>
+                    <section id="stemming" class="slide level2">
+                    <h3>Stemming</h3>
+                    <pre><code>## &lt;&lt;PlainTextDocument&gt;&gt;
+## Metadata:  7
+## Content:  chars: 108
+##
+## articl human be born free equal digniti right endow reason conscienc act toward one anoth spirit brotherhood</code></pre>
+                    </section>
+                    <section id="create-dfm" class="slide level2">
+                    <h3>Create DFM</h3>
+                    <pre><code>
+##     Terms
+## Docs act anoth articl born brotherhood conscienc digniti endow equal free
+##    1   1     1      1    1           1         1       1     1     1    1
+</code></pre>
+                    </section>
+                    <section class="slide level2">
+                    <h3>Optional: Create N-Gram</h3>
+                    <pre><code>
+##
+## article_1 1_all all_human human_beings beings_are are_born born_free free_and and_equal equal_in
+</code></pre>
+                    </section>
+                    <section>
+                        <h2>The Output</h2>
+                    </section>
+                    <section  data-markdown>
+                        <textarea data-template>
+                            ## End Product
+                            ### Document-Feature Matrix
+                            |    | word1 | word2 | word3 | ... | wordN |
+                            |--- | ----- | ----- | --- | ---|---|
+                            |doc1| 0 | 2 | 0|  | 3 |
+                            |doc2| 1 | 0 | 0|  | 0 |
+                            |doc3| 0 | 0  | 2|   | 1 |
+                            |...|  |   | |   |  |
+                            |docN| 0 | 1  | 0|   | 0 |
+                        </textarea>
+                    </section>
+                    <section  data-markdown>
+                        <textarea data-template>
+                            ## End Product
+                            ### Meta-data Martix
+                            |    | var1 | var2 | var3 | ... | varN |
+                            |--- | ----- | ----- | --- | ---|---|
+                            |doc1| Y | 1 | 0|  | 3 |
+                            |doc2| Y | 0 | 0|  | 2 |
+                            |doc3| N | 0  | 0|   | 1 |
+                            |...|  |   | |   |  |
+                            |docN| Y | 0  | 0|   | 3 |
+                        </textarea>
+                    </section>
+                    <section data-background="monkeyr.gif">
+                        <h2 style = "background-color:rgba(0,0,0,0.7);">Time for R</h2>
+                    </section>
+                </section>
+
+<!-- New Section -->
+                <section>
+                    <!-- Slide here -->
+                      <section>
+                          <!-- First slide as title -->
+                          <h2>Keyword Analysis</h2>
+                      </section>
+                      <section>
+                          <h3>Keyword Analysis</h3>
+                          <div  style="text-align: left;">
+                          <br>
+                          <p><h4>What is a Keyword?</h4></p>
+                          <p>“A keyword may be defined as a word which occurs with <span class="highlight-red">unusual frequency</span> in a given text. This does not mean high frequency but unusual frequency, by comparison with a reference corpus of some kind”  </p>
+                          <small>(Scott, M. (1997). PC analysis of key words - and key key words. System, 25(2), 233-45.)</small>
+                      </section>
+                      <section>
+                          <h3>Keyword Analysis</h3>
+                          <div  style="text-align: left;">
+                          <br>
+                          <p><h4>What is Keyness?</h4></p>
+                          <p>“The keyness of a keyword represents the value of log-likelihood or Chi-square statistics; in other words it provides an indicator of a <span class="highlight-red">keyword’s importance</span> as a content descriptor for the appeal.”</p>
+                          <small>(Scott, M. (1997). PC analysis of key words - and key key words. System, 25(2), 233-45.)</small>
+                      </section>
+                      <section>
+                          <h3>Keyword Analysis</h3>
+                          <div  style="text-align: left;">
+                          <br>
+                          <p><h4>What is a Chi-squared test?</h4></p>
+                          <p>Comparison between the observed frequency and expected frequency.</p>
+                      </section>
+                      <section>
+                          <div  style="text-align: center;">
+                          <img src="chisquare.jpg" height="600">
+                      </section>
+                      <section data-background="monkeyr.gif">
+                          <h2 style = "background-color:rgba(0,0,0,0.7);">Time for R</h2>
+                      </section>
+                      <!-- End of Slide -->
+                  </section>
+                <!-- Applications -->
+                <section>
+                          <section>
+                              <h2>Other Applications</h2>
+                          </section>
+                          <section>
+                              <img src="https://pbs.twimg.com/media/DHuj26wWsAEGrlw.jpg:large" height="600">
+                          </section>
+                          <section>
+                              <img src="pagesentbytoken.png" height="600">
+                          </section>
+                          <section data-background-color="#ffffff" data-background-iframe="https://justinchuntingho.github.io/hannover-slides/visColl/#topic=0&lambda=1&term=" data-background-interactive>
+                          </section>
+                </section>
+                <section>
+                    <h3>Thank you very much!</h3><br>
+                  <h4>Twitter: @justin_ct_ho<br>Github: justinchuntingho<br>Email: Jusitn.Ho@ed.ac.uk</h4>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                dependencies: [
+                    { src: 'plugin/markdown/marked.js' },
+                    { src: 'plugin/markdown/markdown.js' },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
+</html>
