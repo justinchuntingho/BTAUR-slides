@@ -42,7 +42,7 @@
                     </section>
                     <section>
                         <h4><i>“Systematic, objective, quantitative analysis of message characteristics"</i></h3>
-                        <small>Kimberly A. Neuendorf, <i> The Content Analysis Guidebook</i></small>
+                        <small><a href="https://discovered.ed.ac.uk/primo-explore/fulldisplay?docid=44UOE_ALMA21179428370002466&context=L&vid=44UOE_VU2&search_scope=default_scope&tab=default_tab&lang=en_US">Kimberly A. Neuendorf, <i> The Content Analysis Guidebook</i></a></small>
                     </section>
                     <section>
                         <h3>Types of Text Analysis</h3><br>
@@ -61,12 +61,12 @@
                     </section>
                     <section>
                         <img src="grimmersteward.png" height="600">
+                        <small>(Source: <a href="https://doi.org/10.1093/pan/mps028">Justin Grimmer and Brandon Stewart, 2013</a>)</small>
                     </section>
                     <section>
                         <h3>Caution!</h3><br>
                         <h4><i>"All Quantitative Models of Language Are Wrong  — But Some Are Useful"</i></h4>
-                        <small>Justin Grimmer and Brandon Stewart, <i>Text as Data: The Promise and Pitfalls of Automatic Content
-Analysis Methods for Political Texts</i></small>
+                        <small><a href="https://doi.org/10.1093/pan/mps028">Justin Grimmer and Brandon Stewart, <i>Text as Data: The Promise and Pitfalls of Automatic Content Analysis Methods for Political Texts</i></a></small>
                     </section>
                     <section>
                         <h3>Bag of Words Assumption</h3>
@@ -131,14 +131,6 @@ Analysis Methods for Political Texts</i></small>
 ##
 ## articl human be born free equal digniti right endow reason conscienc act toward one anoth spirit brotherhood</code></pre>
                     </section>
-                    <section id="create-dfm" class="slide level2">
-                    <h3>Create DFM</h3>
-                    <pre><code>
-##     Terms
-## Docs act anoth articl born brotherhood conscienc digniti endow equal free
-##    1   1     1      1    1           1         1       1     1     1    1
-</code></pre>
-                    </section>
                     <section class="slide level2">
                     <h3>Optional: Create N-Gram</h3>
                     <pre><code>
@@ -146,13 +138,21 @@ Analysis Methods for Political Texts</i></small>
 ## article_1 1_all all_human human_beings beings_are are_born born_free free_and and_equal equal_in
 </code></pre>
                     </section>
+                    <section id="create-dfm" class="slide level2">
+                    <h3>Create DFM</h3>
+                    <pre><code>
+##     Terms
+## Docs act anoth articl born brotherhood conscienc digniti endow equal free
+##    1   1     1      1    1           1         1       1     1     1    1
+##    2   0     0      1    0           0         0       0     0     0    1
+</code></pre>
+                    </section>
                     <section>
                         <h2>The Output</h2>
                     </section>
                     <section  data-markdown>
                         <textarea data-template>
-                            ## End Product
-                            ### Document-Feature Matrix
+                            ### 1. Document-Feature Matrix
                             |    | word1 | word2 | word3 | ... | wordN |
                             |--- | ----- | ----- | --- | ---|---|
                             |doc1| 0 | 2 | 0|  | 3 |
@@ -164,8 +164,7 @@ Analysis Methods for Political Texts</i></small>
                     </section>
                     <section  data-markdown>
                         <textarea data-template>
-                            ## End Product
-                            ### Meta-data Martix
+                            ### 2. Meta-data Martix
                             |    | var1 | var2 | var3 | ... | varN |
                             |--- | ----- | ----- | --- | ---|---|
                             |doc1| Y | 1 | 0|  | 3 |
@@ -193,7 +192,7 @@ Analysis Methods for Political Texts</i></small>
                           <br>
                           <p><h4>What is a Keyword?</h4></p>
                           <p>“A keyword may be defined as a word which occurs with <span class="highlight-red">unusual frequency</span> in a given text. This does not mean high frequency but unusual frequency, by comparison with a reference corpus of some kind”  </p>
-                          <small>(Scott, M. (1997). PC analysis of key words - and key key words. System, 25(2), 233-45.)</small>
+                          <small><a href="https://doi.org/10.1016/S0346-251X(97)00011-0">(Scott, M. (1997). PC analysis of key words - and key key words. System, 25(2), 233-45.)</a></small>
                       </section>
                       <section>
                           <h3>Keyword Analysis</h3>
@@ -201,7 +200,7 @@ Analysis Methods for Political Texts</i></small>
                           <br>
                           <p><h4>What is Keyness?</h4></p>
                           <p>“The keyness of a keyword represents the value of log-likelihood or Chi-square statistics; in other words it provides an indicator of a <span class="highlight-red">keyword’s importance</span> as a content descriptor for the appeal.”</p>
-                          <small>(Scott, M. (1997). PC analysis of key words - and key key words. System, 25(2), 233-45.)</small>
+                          <small><a href="https://doi.org/10.1016/S0346-251X(97)00011-0">(Scott, M. (1997). PC analysis of key words - and key key words. System, 25(2), 233-45.)</a></small>
                       </section>
                       <section>
                           <h3>Keyword Analysis</h3>
@@ -232,10 +231,14 @@ Analysis Methods for Political Texts</i></small>
                           </section>
                           <section data-background-color="#ffffff" data-background-iframe="https://justinchuntingho.github.io/hannover-slides/visColl/#topic=0&lambda=1&term=" data-background-interactive>
                           </section>
+                          <section>
+                              <img src="1100words.png" class="stretch" style="background:none; border:none; box-shadow:none;">
+                          </section>
                 </section>
                 <section>
                     <h3>Thank you very much!</h3><br>
-                  <h4>Twitter: @justin_ct_ho<br>Github: justinchuntingho<br>Email: Jusitn.Ho@ed.ac.uk</h4>
+                  <h4>Twitter: @justin_ct_ho<br>Github: justinchuntingho<br>Email: Jusitn.Ho@ed.ac.uk</h4><br>
+                  <h4>Edinburgh Text Analysis Research Group: <a href="https://jiscmail.ac.uk/TEXTANALYSIS">https://jiscmail.ac.uk/TEXTANALYSIS</a></h4>
                 </section>
             </div>
         </div>
